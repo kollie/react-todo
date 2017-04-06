@@ -2,6 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 
+import TodoApp from 'TodoApp'
+
 // Load foundations
 $(document).foundation();
 
@@ -11,6 +13,6 @@ require('applicationStyles');
 
 
 render(
-  <p>Hello there, this is working!</p>,
+  <TodoApp/>,
   document.getElementById('app')
 );
