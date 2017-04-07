@@ -1,5 +1,5 @@
 
-import webpackConfig from './webpack.config.js'
+const webpackConfig = require('./webpack.config.js')
 
 
 
