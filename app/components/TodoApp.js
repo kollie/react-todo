@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import uuid from 'node-uuid'
 import TodoList from 'TodoList'
 import AddTodo from 'AddTodo'
 import TodoSearch from 'TodoSearch'
@@ -14,19 +15,19 @@ export default class TodoApp extends React.Component {
       searchText: '',
       todos: [
         {
-          id: 1,
+          id: uuid(),
           text: 'Eat breakfast'
         },
         {
-          id: 2,
+          id: uuid(),
           text: 'Continue react course'
         },
         {
-          id: 3,
+          id: uuid(),
           text: 'Have lunch'
         },
         {
-          id: 4,
+          id: uuid(),
           text: 'Go for invitation card'
         }
       ]
@@ -36,7 +37,15 @@ export default class TodoApp extends React.Component {
   }
 
   handleTodo (text) {
-    alert('new todo: ' + text)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuid(),
+          text: text
+        }
+      ]
+    })
   }
 
   handleSearch (showCompleted, searchText) {
