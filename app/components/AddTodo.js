@@ -11,12 +11,15 @@ export default class AddTodo extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     let todoText = this.refs.todoText.value
+    let nameText = this.refs.nameText.value
 
-    if (todoText.length > 0) {
+    if (todoText.length && nameText.length > 0) {
       this.refs.todoText.value = ''
-      this.props.onAddTodo(todoText)
+      this.refs.nameText.value = ''
+      this.props.onAddTodo(todoText, nameText)
     } else {
       this.refs.todoText.focus()
+      this.refs.nameText.focus()
     }
   }
 
@@ -25,6 +28,7 @@ export default class AddTodo extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type='text' ref='todoText' placeholder='What do you want to do?'/>
+          <input type='text' ref='nameText' placeholder='Your Name'/>
           <button className='button expanded'>Add Todo</button>
         </form>
       </div>
