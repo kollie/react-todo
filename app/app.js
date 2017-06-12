@@ -12,10 +12,6 @@ store.subscribe(() => {
   console.log('New state', store.getState())
 })
 
-store.dispatch(actions.addTodo('Eat', 'Israel'))
-store.dispatch(actions.setSearchText('Will'))
-store.dispatch(actions.toggleShowCompleted())
-
 // Load foundations
 $(document).foundation();
 
