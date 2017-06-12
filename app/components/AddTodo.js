@@ -1,8 +1,10 @@
 'use strict'
 
 import React from 'react'
+import {connect} from 'react-redux'
+const actions = require('actions')
 
-export default class AddTodo extends React.Component {
+export class AddTodo extends React.Component {
   constructor (props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -10,13 +12,14 @@ export default class AddTodo extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    let {dispatch} = this.props
     let todoText = this.refs.todoText.value
     let nameText = this.refs.nameText.value
 
     if (todoText.length && nameText.length > 0) {
       this.refs.todoText.value = ''
       this.refs.nameText.value = ''
-      this.props.onAddTodo(todoText, nameText)
+      dispatch(actions.addTodo(todoText, nameText))
     } else {
       this.refs.todoText.focus()
       this.refs.nameText.focus()
@@ -35,3 +38,5 @@ export default class AddTodo extends React.Component {
     )
   }
 }
+
+export default connect()(AddTodo)

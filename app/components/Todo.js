@@ -1,15 +1,18 @@
 'use strict'
 
 import React from 'react'
+import {connect} from 'react-redux'
 const moment = require('moment')
 
-export default class Todo extends React.Component {
+const actions = require('actions')
+
+export class Todo extends React.Component {
   constructor (props) {
     super(props)
   }
 
   render () {
-    let {id, text, name, completed, createdAt, completedAt} = this.props
+    let {id, text, name, completed, createdAt, completedAt, dispatch} = this.props
     let todoClassName = completed ? 'todo todo-completed' : 'todo'
     let renderDate = () => {
       let message = 'Created '
@@ -24,7 +27,8 @@ export default class Todo extends React.Component {
     }
     return (
       <div className={todoClassName} onClick={() => {
-          this.props.onToggle(id)
+          // this.props.onToggle(id)
+          dispatch(actions.toggleTodo(id))
         }}>
         <div>
           <input type='checkbox' checked={completed}/>
@@ -38,3 +42,5 @@ export default class Todo extends React.Component {
     )
   }
 }
+
+export default connect()(Todo)

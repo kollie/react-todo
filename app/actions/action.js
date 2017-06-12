@@ -11,10 +11,11 @@ export let toggleShowCompleted = () => {
   }
 }
 
-export let addTodo = (text) => {
+export let addTodo = (text, name) => {
   return {
     type: 'ADD_TODO',
-    text
+    text,
+    name
   }
 }
 

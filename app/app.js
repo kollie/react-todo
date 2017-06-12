@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import {Provider} from 'react-redux'
 import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 
 import TodoApp from 'TodoApp'
@@ -24,6 +25,8 @@ require('applicationStyles');
 
 
 render(
-  <TodoApp/>,
+  <Provider store={store}>
+    <TodoApp/>
+  </Provider>,
   document.getElementById('app')
 );
