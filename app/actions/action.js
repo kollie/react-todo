@@ -19,6 +19,13 @@ export let addTodo = (text, name) => {
   }
 }
 
+export let addTodos = (todos) => {
+  return {
+    type: 'ADD_TODOS',
+    todos
+  }
+}
+
 export let toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',

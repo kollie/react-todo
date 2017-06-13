@@ -3,7 +3,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Todo from 'Todo'
-import {setTodos, getTodos, filterTodos} from 'TodoAPI'
+import {filterTodos} from 'TodoAPI'
 
 export class TodoList extends React.Component {
   constructor (props) {
