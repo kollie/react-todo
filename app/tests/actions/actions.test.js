@@ -1,5 +1,9 @@
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 const expect = require('expect')
 const actions = require('actions')
+
+const createMockStore = configureMockStore([thunk])
 
 describe('Actions', () => {
   it('should generate search text action', () => {
@@ -15,12 +19,34 @@ describe('Actions', () => {
   it('should generate add todo action', () => {
     let action = {
       type: 'ADD_TODO',
-      text: 'Eat',
-      name: 'Israel'
+      todo: {
+        id: 56789,
+        text: 'Run',
+        completed: false,
+        createdAt: 0
+      }
     }
-    let res = actions.addTodo(action.text, action.name)
+    let res = actions.addTodo(action.todo)
 
     expect(res).toEqual(action)
+  })
+
+  it('should create todo and dispatch action ADD_TODO', (done) => {
+    let store = createMockStore({})
+    let todoText = 'Laugh'
+    let nameText = 'Israel'
+
+    store.dispatch(actions.startAddTodo(todoText, nameText)).then(() => {
+      let actions = store.getActions()
+      expect(actions[0]).toInclude({
+        type: 'ADD_TODO'
+      })
+      expect(actions[0].todo).toInclude({
+        text: todoText,
+        name: nameText
+      })
+      done()
+    }).catch(done)
   })
 
   it('should generate add todos action object', () => {
