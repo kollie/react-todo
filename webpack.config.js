@@ -2,6 +2,8 @@ const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
     disable: process.env.NODE_ENV === "development"
@@ -16,7 +18,7 @@ module.exports = {
   externals: {
     jquery: 'jQuery'
   },
-  devtool: 'eval-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'eval-source-map',
   plugins: [
     new webpack.ProvidePlugin({
       '$': 'jquery',
