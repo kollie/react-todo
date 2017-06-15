@@ -7,17 +7,18 @@ import TodoApp from 'TodoApp'
 
 const actions = require('actions')
 const store = require('configureStore').configure()
-import {setTodos, getTodos, filterTodos} from 'TodoAPI'
 
-store.subscribe(() => {
-  let state = store.getState()
-  console.log('New state', state)
+// store.subscribe(() => {
+//   let state = store.getState()
+//   console.log('New state', state)
+//
+//   setTodos(state.todos)
+// })
+//
+// let initialTodos = getTodos()
+// store.dispatch(actions.addTodos(initialTodos))
 
-  setTodos(state.todos)
-})
-
-let initialTodos = getTodos()
-store.dispatch(actions.addTodos(initialTodos))
+store.dispatch(actions.startAddTodos())
 
 // Load foundations
 $(document).foundation();
