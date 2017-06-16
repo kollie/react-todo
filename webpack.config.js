@@ -1,8 +1,15 @@
 const webpack = require('webpack')
+const envFile = require('node-env-file')
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
+try {
+  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'))
+} catch (e) {
+
+}
 
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
@@ -24,7 +31,17 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    extractSass
+    extractSass,
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_KEY: JSON.stringify(process.env.API_KEY),
+        AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+        DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
+
+      }
+    })
   ],
   output: {
     path: __dirname,
